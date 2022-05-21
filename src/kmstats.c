@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     FILE *f;
     f = fopen(filename, "r");
     fseek(f, 0, SEEK_END);
-    uint64_t fsize = ftell(f);
+    int fsize = ftell(f);
     fseek(f, 0, 0);
     uint8_t dataset[fsize];
     fread(dataset, 1, fsize, f);
@@ -25,5 +25,7 @@ int main(int argc, char *argv[]) {
     printIC(&state);
     printEntropy(&state);
     printMean(&state);
+    printChi(&state);
+    printSerial(&state);
     runAllTests(&state, dataset, fsize);
 }

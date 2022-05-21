@@ -20,3 +20,11 @@ void printEntropy(struct kmstatsState *state) {
 void printMean(struct kmstatsState *state) {
     printf("Arithmetic Mean: %f\n", state->mean);
 }
+
+void printChi(struct kmstatsState *state) {
+    printf("Chi Square: %f\n", state->chi);
+}
+
+void printSerial(struct kmstatsState *state) {
+    printf("Serial Correlation: %f\n", state->serial);
+}
