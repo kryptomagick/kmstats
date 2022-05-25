@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
+#include <unistd.h>
 #include "kmstats_common.c"
 #include "kmstats_display.c"
 #include "kmstats_tests.c"
@@ -17,6 +18,10 @@ void kmstatsUsage() {
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         kmstatsUsage();
+        exit(1);
+    }
+    if (access(argv[1], F_OK) == -1 ) {
+        printf("%s not found\n", argv[1]);
         exit(1);
     }
     char *filename = argv[1];
