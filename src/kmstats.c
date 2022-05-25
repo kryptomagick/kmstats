@@ -1,14 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
 #include "kmstats_common.c"
 #include "kmstats_display.c"
 #include "kmstats_tests.c"
 
+void kmstatsUsage() {
+    printf("KryptoMagick Stats v0.1\n\n");
+    printf("usage: kmstats <filename>\n");
+}
+
 /* KryptoMagick Stats by Karl Zander */
 // Inteneded to give statistical insight into the given dataset
 
 int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        kmstatsUsage();
+        exit(1);
+    }
     char *filename = argv[1];
     FILE *f;
     f = fopen(filename, "r");
