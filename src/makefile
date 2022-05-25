@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O3 -std=c99 -ggdb
+CFLAGS=-O3 -std=c99 -ggdb -lm
 TARGET=kmstats
 all: $(TARGET) $(KEYGEN)
 

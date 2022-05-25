@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <math.h>
 #include "kmstats_common.c"
 #include "kmstats_display.c"
 #include "kmstats_tests.c"

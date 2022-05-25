@@ -1,7 +1,7 @@
 struct kmstatsState {
-    float e;
-    float ic;
-    float mean;
+    double e;
+    double ic;
+    double mean;
     double chi;
     double serial;
     float pi;
@@ -43,17 +43,17 @@ void countAll(struct kmstatsState *state, uint8_t *in, int inLen) {
        t0 = (in[(i-lag) % inLen] - (mean * in[(i-lag) % inLen]));
        t1 = (in[i] - (mean * in[i]));
        state->serial += (t0 * t1) / lag;
+       state->chi += (in[i] * in[i]);
+       state->e += (in[i] * log(256));
        
    }
    for (i = 0; i < 256; i++) {
        state->ic += ((state->count[i] / (inLen / 256)) * ((state->count[i] - 1) / (inLen / 256)));
        state->mean += state->count[i];
-       state->e += state->count[i] / 256.0;
-       state->chi += (state->count[i] * state->count[i]);
    }
    state->ic = (256.0 * state->ic) / inLen;
    state->mean = (inLen / state->mean) * 127.5;
-   state->e = 8.0 - (8.0 / state->e);
-   state->chi = (inLen / state->chi);
+   state->e = state->e / inLen / log(256) / 8 / 2;
+   state->chi = (state->chi /inLen) / (256 * 256);
    state->serial = 1 - (state->serial / inLen / (256 * 256)) / 256;
 }
