@@ -47,8 +47,6 @@ void countAll(struct kmstatsState *state, uint8_t *in, int inLen) {
    double mean = 127.0;
    double area = (acosl(-1.0L));
    int k = 8;
-   double k2 = k / 2;
-   //state->chi += exp((0.5 * in[i])) * (2.0 * -sqrt(in[i]));
    for (i = 0; i < inLen; i++) {
        state->count[in[i]] += 1;
        tv = (in[(i-lag) % inLen] * in[i]);
