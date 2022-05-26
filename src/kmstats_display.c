@@ -28,3 +28,15 @@ void printChi(struct kmstatsState *state) {
 void printSerial(struct kmstatsState *state) {
     printf("Serial Correlation: %f\n", state->serial);
 }
+
+void printPi(struct kmstatsState *state) {
+    printf("Monte Carlo for Pi: %f\n", state->pi);
+}
+
+void printPr(struct kmstatsState *state) {
+    printf("Probability: %f\n", state->pr);
+}
+
+void printPDF(struct kmstatsState *state) {
+    printf("Probability Density: %f\n", state->pdf);
+}

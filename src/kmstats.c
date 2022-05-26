@@ -43,5 +43,7 @@ int main(int argc, char *argv[]) {
     printMean(&state);
     printChi(&state);
     printSerial(&state);
+    printPr(&state);
+    printPDF(&state);
     runAllTests(&state, dataset, fsize);
 }

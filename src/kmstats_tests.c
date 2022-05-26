@@ -34,7 +34,6 @@ void runSerialTest(struct kmstatsState *state) {
     }
 }
 
-
 void runAvgPerGroup(struct kmstatsState *state, uint8_t *in, int inLen, int groupLen) {
     float avg = avgPerGroup(state, in, inLen, groupLen);
     if (avg > 127) {
