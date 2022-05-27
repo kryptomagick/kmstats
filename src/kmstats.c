@@ -45,5 +45,6 @@ int main(int argc, char *argv[]) {
     printSerial(&state);
     printPr(&state);
     printPDF(&state);
+    printPi(&state);
     runAllTests(&state, dataset, fsize);
 }
