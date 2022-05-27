@@ -69,7 +69,8 @@ void countAll(struct kmstatsState *state, uint8_t *in, int inLen) {
        state->ic += ((state->count[i] / (inLen / 256)) * ((state->count[i] - 1) / (inLen / 256)));
        state->mean += state->count[i];
    }
-   state->pi = ((state->cpi * ((state->sum / 2) * (state->sum / 2))) / (inLen * inLen) / (256 * 256) / (log(256) * log(256)) / state->cpi) + (log(state->cpi) - 1);
+   state->pi = (4 - ((((state->cpi * (state->sum / 2)) / (inLen)) / 256) * state->cpi)) * 2;
+   //state->pi = ((state->cpi * ((state->sum / 2) * (state->sum / 2))) / (inLen * inLen) / (256 * 256) / (log(256) * log(256)) / state->cpi) + (log(state->cpi) - 1);
    state->ic = (256.0 * state->ic) / inLen;
    state->mean = (inLen / state->mean) * 127.5;
    state->e = state->e / inLen / log(256) / 8 / 2;
