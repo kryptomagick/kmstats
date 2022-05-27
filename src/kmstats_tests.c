@@ -55,7 +55,7 @@ void runChiTest(struct kmstatsState *state) {
 
 void runAvgPerGroup(struct kmstatsState *state, uint8_t *in, int inLen, int groupLen) {
     float avg = avgPerGroup(state, in, inLen, groupLen);
-    if (avg > 127) {
+    if (avg < 133.5 && (avg > 119.5)) {
         printf("Pass (AvgPerGroup %f)\n", avg);
     }
     else {

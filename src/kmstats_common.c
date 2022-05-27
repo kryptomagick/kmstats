@@ -26,10 +26,10 @@ void kmstatsInit(struct kmstatsState *state) {
     state->sum = 0;
 }
 
-float avgPerGroup(struct kmstatsState *state, uint8_t *in, int inLen, int groupLen) {
+double avgPerGroup(struct kmstatsState *state, uint8_t *in, int inLen, int groupLen) {
     int score = 0;
     int groups = inLen / groupLen;
-    float avg = 0.0;
+    double avg = 0.0;
     int c = 0;
     for (int x = 0; x < groups; x++) {
         for (int y = 0; y < groupLen; y++) {
@@ -48,7 +48,7 @@ void countAll(struct kmstatsState *state, uint8_t *in, int inLen) {
    double t1;
    double tv;
    uint8_t lag = 16;
-   double mean = 127.0;
+   double mean = 127.5;
    double area = (acosl(-1.0L));
    int k = 8;
    for (i = 0; i < inLen; i++) {
