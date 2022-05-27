@@ -44,6 +44,15 @@ void runSerialTest(struct kmstatsState *state) {
     }
 }
 
+void runChiTest(struct kmstatsState *state) {
+    if ((state->chi < 255) && (state->chi > 209)) {
+        printf("Pass (Chi)\n");
+    }
+    else {
+        printf("Fail (Chi)\n");
+    }
+}
+
 void runAvgPerGroup(struct kmstatsState *state, uint8_t *in, int inLen, int groupLen) {
     float avg = avgPerGroup(state, in, inLen, groupLen);
     if (avg > 127) {
@@ -59,5 +68,6 @@ void runAllTests(struct kmstatsState *state, uint8_t *in, int inLen) {
     runEntropyTest(state);
     runMeanTest(state);
     runSerialTest(state);
+    runChiTest(state);
     runAvgPerGroup(state, in, inLen, 256);
 }
