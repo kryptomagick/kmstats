@@ -7,8 +7,9 @@ struct kmstatsState {
     double pr;
     double pdf;
     double serial;
-    long double pi;
-    long double sum;
+    double pi;
+    double cpi;
+    long sum;
     int count[256];
 };
 
@@ -18,6 +19,7 @@ void kmstatsInit(struct kmstatsState *state) {
     state->ic = 0.0;
     state->mean = 256.0;
     state->pi = 3.14159265359;
+    state->cpi = 3.14159265359;
     state->pr = 0.0;
     state->pdf = 0.0;
     state->ed = 0.0;
@@ -60,14 +62,14 @@ void countAll(struct kmstatsState *state, uint8_t *in, int inLen) {
        state->chi += ((a * a) * 256) - i;
        state->pdf += (pow((in[i]), ((k / 2) - 1)) * exp(-(in[i] / 2))) / (pow(2, (k / 2)) * (k / 2));
        state->e += (in[i] * log(256));
-       state->sum += in[i] / 256;
+       state->sum += in[i];
        
    }
    for (i = 0; i < 256; i++) {
        state->ic += ((state->count[i] / (inLen / 256)) * ((state->count[i] - 1) / (inLen / 256)));
        state->mean += state->count[i];
    }
-   state->pi = state->pi * ((state->sum / 2) * (state->sum / 2));
+   state->pi = ((state->cpi * ((state->sum / 2) * (state->sum / 2))) / (inLen * inLen) / (256 * 256) / (log(256) * log(256)) / state->cpi) + (log(state->cpi) - 1);
    state->ic = (256.0 * state->ic) / inLen;
    state->mean = (inLen / state->mean) * 127.5;
    state->e = state->e / inLen / log(256) / 8 / 2;
